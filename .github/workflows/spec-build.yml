@@ -1,0 +1,168 @@
+name: Build from spec
+
+# When a spec with Status "Ready for build" lands on main, Claude implements it
+# on a new branch and the workflow opens a pull request for review.
+
+on:
+  push:
+    branches: [main]
+    paths: ['specs/*.md']
+  workflow_dispatch:
+    inputs:
+      spec:
+        description: 'Spec file to build, e.g. specs/my-feature.md'
+        required: true
+      force:
+        description: 'Build even if its Status is not "Ready for build"'
+        type: boolean
+        default: false
+
+# One build at a time, so builds don't trip over each other.
+concurrency:
+  group: spec-build
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  find:
+    name: Find specs ready to build
+    runs-on: ubuntu-latest
+    outputs:
+      specs: ${{ steps.find.outputs.specs }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - id: find
+        env:
+          SPEC_INPUT: ${{ inputs.spec }}
+          FORCE: ${{ inputs.force }}
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+        run: node scripts/find-ready-specs.mjs >> "$GITHUB_OUTPUT"
+
+  build:
+    name: Build ${{ matrix.spec }}
+    needs: find
+    if: needs.find.outputs.specs != '[]' && needs.find.outputs.specs != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        spec: ${{ fromJSON(needs.find.outputs.specs) }}
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: write
+    env:
+      SPEC: ${{ matrix.spec }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Create branch
+        id: branch
+        run: |
+          name="spec-build/$(basename "$SPEC" .md)-${{ github.run_id }}"
+          git checkout -b "$name"
+          echo "name=$name" >> "$GITHUB_OUTPUT"
+          mkdir -p .spec-build
+
+      - name: Implement spec with Claude
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            You are implementing a feature from its specification in this repository.
+
+            Spec file: ${{ matrix.spec }}
+
+            1. Read CLAUDE.md for project conventions, then read the spec in full
+               and the existing code it touches.
+            2. Implement everything the spec's Requirements and Acceptance Criteria
+               ask for. Where the spec leaves something open, make a sensible,
+               minimal choice and record it in the spec's Decisions table.
+            3. Add tests for every acceptance criterion, named "ACn: ..." so each maps
+               back to the spec.
+            4. Run `npm run validate`, `npm test` and `npm run build` and fix any
+               failures. Do not skip, delete or weaken tests to make them pass.
+            5. In the spec's header table, change Status from "Ready for build" to
+               "Implemented".
+            6. Write a pull request description to .spec-build/pr-body.md with:
+               "## Summary" (what was built), "## Acceptance criteria" (a table of
+               each AC and how it is met / which test covers it), "## Decisions made"
+               (anything you chose where the spec was silent), and "## Testing"
+               (the commands you ran and their results).
+
+            Do not run git commit or git push; the workflow commits and opens the PR.
+            Do not edit anything under .github/.
+          claude_args: |
+            --max-turns 80
+            --allowedTools "Read,Write,Edit,Glob,Grep,Bash(npm run:*),Bash(npm test:*),Bash(node:*),Bash(ls:*),Bash(mkdir:*)"
+            --disallowedTools "Bash(git push:*),Bash(git commit:*)"
+
+      - name: Check the result
+        id: checks
+        continue-on-error: true
+        run: |
+          npm run validate
+          npm test
+          npm run build
+
+      - name: Commit, push and open pull request
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ steps.branch.outputs.name }}
+          CHECKS: ${{ steps.checks.outcome }}
+        run: |
+          body=.spec-build/pr-body.md
+          [ -s "$body" ] || echo "Implementation of \`$SPEC\`." > "$body"
+          cp "$body" "$RUNNER_TEMP/pr-body.md"
+          rm -rf .spec-build
+
+          git add -A
+          if git diff --cached --quiet; then
+            echo "::error::Claude made no changes for $SPEC"
+            exit 1
+          fi
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -m "Implement $SPEC" -m "Built automatically from the spec by the spec-build workflow."
+          git push -u origin "$BRANCH"
+
+          draft=""
+          if [ "$CHECKS" != "success" ]; then
+            draft="--draft"
+            printf '\n\n> [!WARNING]\n> Validation, tests or build failed after the automated build. Opened as a draft; see the workflow run: %s\n' \
+              "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> "$RUNNER_TEMP/pr-body.md"
+          fi
+          printf '\n\n---\n_Generated from `%s` by the spec-build workflow with Claude Code._\n' "$SPEC" >> "$RUNNER_TEMP/pr-body.md"
+
+          title="$(sed -n 's/^# *Spec: *//p' "$SPEC" | head -1)"
+          url=$(gh pr create --base main --head "$BRANCH" $draft \
+            --title "Build: ${title:-$SPEC}" --body-file "$RUNNER_TEMP/pr-body.md")
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "Opened $url" >> "$GITHUB_STEP_SUMMARY"
+
+      # PRs opened with the workflow token don't start other workflows by
+      # themselves, so start CI on the new branch explicitly. Its checks
+      # show up on the PR.
+      - name: Run CI on the pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run ci.yml --ref "${{ steps.branch.outputs.name }}"
