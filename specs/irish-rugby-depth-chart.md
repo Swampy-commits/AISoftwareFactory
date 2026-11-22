@@ -31,6 +31,9 @@ position at a glance.
 - **Depth per position:** an ordered list of players, from first choice down
   (e.g. up to 3–4 deep).
 - **Player details on each entry:** name, province/club, and caps.
+- **Unavailable players:** injured or otherwise unavailable players stay in the
+  chart at their usual rank but are greyed out, with a short status
+  (e.g. "Injured").
 - **Layout:** positions laid out the way a team lines up on the pitch, so the
   chart reads like a team formation, with the depth list under each position.
 
@@ -48,27 +51,39 @@ first-choice XV and the cover at each position.
 - Live match data, scores or fixtures.
 - User accounts, editing or voting on the depth chart.
 
+### Data and ranking
+- **Data source:** the depth chart lives in a data file in the repo and is
+  updated by hand. The page reads from that file; there is no external feed.
+- **Ranking basis:** the order at each position reflects public opinion — the
+  general consensus among fans and pundits about who should be first choice —
+  not the official squad or match-day selections. The person maintaining the
+  data file sets the order to match that consensus. (Collecting votes on the
+  site is out of scope; see below.)
+
 ---
 
-## 2. Open Questions
-To be settled before the detailed requirements are written:
+## 2. Decisions
 
-1. **Data source:** Where does the depth chart come from — maintained by hand
-   (e.g. a JSON/YAML file in the repo), or pulled from an external source?
-2. **Who decides the ranking:** Based on the latest official squad / match-day
-   selections, or an editorial view?
-3. **Update frequency:** Updated per squad announcement, per match, or ad hoc?
-4. **Injuries / availability:** Should injured or unavailable players be shown
-   (e.g. greyed out with a status)?
-5. **Extra player details:** Photos, age, positions they can cover, recent form?
-6. **Players in more than one position:** Can a player appear at several
+| # | Question | Decision |
+|---|----------|----------|
+| 1 | Data source | Maintained by hand in a data file in the repo |
+| 2 | Who decides the ranking | Public opinion (fan/pundit consensus), entered by hand |
+| 3 | Injured / unavailable players | Shown at their rank, greyed out with a status |
+
+## 3. Open Questions
+Still to be settled:
+
+1. **Update frequency:** Updated per squad announcement, per match, or ad hoc?
+2. **Extra player details:** Photos, age, positions they can cover, recent form?
+3. **Players in more than one position:** Can a player appear at several
    positions (e.g. a utility back at 12 and 15)?
-7. **Tech stack / hosting:** Static page, or part of a larger app?
+4. **Tech stack / hosting:** Static page, or part of a larger app?
+5. **Data file format:** JSON or YAML?
 
 ---
 
-## 3. Requirements
-_TBD — to be written once the open questions are answered._
+## 4. Requirements
+_TBD — to be written once the remaining open questions are answered._
 
-## 4. Acceptance Criteria
+## 5. Acceptance Criteria
 _TBD._
