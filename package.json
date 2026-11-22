@@ -1,0 +1,15 @@
+{
+  "name": "irish-rugby-depth-chart",
+  "version": "1.0.0",
+  "description": "Static page showing the Ireland men's rugby team depth chart, built from data/depth-chart.json",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/build.mjs --check",
+    "build": "node scripts/build.mjs",
+    "test": "node --test \"test/*.test.mjs\""
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
