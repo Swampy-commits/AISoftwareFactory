@@ -72,13 +72,13 @@ first-choice XV and the cover at each position.
 | 4 | Data file format | JSON, at `data/depth-chart.json` |
 | 5 | Players in more than one position | Allowed — players are defined once and referenced by id from each position's depth list |
 | 6 | Tech stack | Static HTML page generated at build time by a dependency-free Node.js script (`npm run build` → `dist/index.html`); no client-side JavaScript |
+| 7 | Hosting | GitHub Pages, deployed by GitHub Actions on every push to `main` after validation and tests pass |
 
 ## 3. Open Questions
 Still to be settled:
 
 1. **Update frequency:** Updated per squad announcement, per match, or ad hoc?
 2. **Extra player details:** Photos, age, positions they can cover, recent form?
-3. **Hosting:** Where `dist/` is published.
 
 ---
 
