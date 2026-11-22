@@ -1,0 +1,400 @@
+{
+  "team": "Ireland men's senior rugby union team",
+  "lastUpdated": "2026-11-22",
+  "rankingBasis": "Public opinion: general fan and pundit consensus on who should be first choice. Set by hand.",
+  "players": {
+    "andrew-porter": {
+      "name": "Andrew Porter",
+      "club": "Leinster",
+      "caps": 75
+    },
+    "jack-boyle": {
+      "name": "Jack Boyle",
+      "club": "Leinster",
+      "caps": 10,
+      "status": "Injured"
+    },
+    "paddy-mccarthy": {
+      "name": "Paddy McCarthy",
+      "club": "Leinster",
+      "caps": 5,
+      "status": "Injured"
+    },
+    "michael-milne": {
+      "name": "Michael Milne",
+      "club": "Munster",
+      "caps": 3,
+      "status": "Injured"
+    },
+    "jeremy-loughman": {
+      "name": "Jeremy Loughman",
+      "club": "Munster",
+      "caps": 10
+    },
+    "dan-sheehan": {
+      "name": "Dan Sheehan",
+      "club": "Leinster",
+      "caps": 45
+    },
+    "ronan-kelleher": {
+      "name": "Rónan Kelleher",
+      "club": "Leinster",
+      "caps": 40
+    },
+    "gus-mccarthy": {
+      "name": "Gus McCarthy",
+      "club": "Leinster",
+      "caps": 3
+    },
+    "tadhg-furlong": {
+      "name": "Tadhg Furlong",
+      "club": "Leinster",
+      "caps": 90
+    },
+    "finlay-bealham": {
+      "name": "Finlay Bealham",
+      "club": "Connacht",
+      "caps": 50
+    },
+    "thomas-clarkson": {
+      "name": "Thomas Clarkson",
+      "club": "Leinster",
+      "caps": 8
+    },
+    "tom-otoole": {
+      "name": "Tom O'Toole",
+      "club": "Ulster",
+      "caps": 12
+    },
+    "joe-mccarthy": {
+      "name": "Joe McCarthy",
+      "club": "Leinster",
+      "caps": 20
+    },
+    "james-ryan": {
+      "name": "James Ryan",
+      "club": "Leinster",
+      "caps": 75
+    },
+    "iain-henderson": {
+      "name": "Iain Henderson",
+      "club": "Ulster",
+      "caps": 85,
+      "status": "Injured"
+    },
+    "cormac-izuchukwu": {
+      "name": "Cormac Izuchukwu",
+      "club": "Ulster",
+      "caps": 3
+    },
+    "tadhg-beirne": {
+      "name": "Tadhg Beirne",
+      "club": "Munster",
+      "caps": 65
+    },
+    "ryan-baird": {
+      "name": "Ryan Baird",
+      "club": "Leinster",
+      "caps": 30
+    },
+    "tom-ahern": {
+      "name": "Tom Ahern",
+      "club": "Munster",
+      "caps": 3,
+      "status": "Injured"
+    },
+    "cian-prendergast": {
+      "name": "Cian Prendergast",
+      "club": "Connacht",
+      "caps": 5
+    },
+    "nick-timoney": {
+      "name": "Nick Timoney",
+      "club": "Ulster",
+      "caps": 8
+    },
+    "josh-van-der-flier": {
+      "name": "Josh van der Flier",
+      "club": "Leinster",
+      "caps": 70
+    },
+    "caelan-doris": {
+      "name": "Caelan Doris",
+      "club": "Leinster",
+      "caps": 55,
+      "status": "Injured"
+    },
+    "jack-conan": {
+      "name": "Jack Conan",
+      "club": "Leinster",
+      "caps": 50,
+      "status": "Injured"
+    },
+    "sean-jansen": {
+      "name": "Sean Jansen",
+      "club": "Connacht",
+      "caps": 2,
+      "status": "Injured"
+    },
+    "gavin-coombes": {
+      "name": "Gavin Coombes",
+      "club": "Munster",
+      "caps": 6
+    },
+    "jamison-gibson-park": {
+      "name": "Jamison Gibson-Park",
+      "club": "Leinster",
+      "caps": 45
+    },
+    "craig-casey": {
+      "name": "Craig Casey",
+      "club": "Munster",
+      "caps": 20
+    },
+    "sam-prendergast": {
+      "name": "Sam Prendergast",
+      "club": "Leinster",
+      "caps": 12
+    },
+    "jack-crowley": {
+      "name": "Jack Crowley",
+      "club": "Munster",
+      "caps": 30,
+      "status": "Injured"
+    },
+    "ciaran-frawley": {
+      "name": "Ciarán Frawley",
+      "club": "Leinster",
+      "caps": 12
+    },
+    "harry-byrne": {
+      "name": "Harry Byrne",
+      "club": "Leinster",
+      "caps": 5,
+      "status": "Injured"
+    },
+    "bundee-aki": {
+      "name": "Bundee Aki",
+      "club": "Connacht",
+      "caps": 65
+    },
+    "stuart-mccloskey": {
+      "name": "Stuart McCloskey",
+      "club": "Ulster",
+      "caps": 20
+    },
+    "robbie-henshaw": {
+      "name": "Robbie Henshaw",
+      "club": "Leinster",
+      "caps": 80
+    },
+    "garry-ringrose": {
+      "name": "Garry Ringrose",
+      "club": "Leinster",
+      "caps": 65
+    },
+    "jamie-osborne": {
+      "name": "Jamie Osborne",
+      "club": "Leinster",
+      "caps": 8
+    },
+    "james-lowe": {
+      "name": "James Lowe",
+      "club": "Leinster",
+      "caps": 40
+    },
+    "jacob-stockdale": {
+      "name": "Jacob Stockdale",
+      "club": "Ulster",
+      "caps": 40
+    },
+    "mack-hansen": {
+      "name": "Mack Hansen",
+      "club": "Connacht",
+      "caps": 40
+    },
+    "calvin-nash": {
+      "name": "Calvin Nash",
+      "club": "Munster",
+      "caps": 8
+    },
+    "tommy-obrien": {
+      "name": "Tommy O'Brien",
+      "club": "Leinster",
+      "caps": 3
+    },
+    "ethan-mcilroy": {
+      "name": "Ethan McIlroy",
+      "club": "Ulster",
+      "caps": 1,
+      "status": "Injured"
+    },
+    "hugo-keenan": {
+      "name": "Hugo Keenan",
+      "club": "Leinster",
+      "caps": 50
+    },
+    "jimmy-obrien": {
+      "name": "Jimmy O'Brien",
+      "club": "Leinster",
+      "caps": 8
+    }
+  },
+  "positions": [
+    {
+      "number": 1,
+      "name": "Loosehead Prop",
+      "unit": "Front row",
+      "depth": [
+        "andrew-porter",
+        "jack-boyle",
+        "paddy-mccarthy",
+        "jeremy-loughman",
+        "michael-milne"
+      ]
+    },
+    {
+      "number": 2,
+      "name": "Hooker",
+      "unit": "Front row",
+      "depth": [
+        "dan-sheehan",
+        "ronan-kelleher",
+        "gus-mccarthy"
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Tighthead Prop",
+      "unit": "Front row",
+      "depth": [
+        "tadhg-furlong",
+        "finlay-bealham",
+        "thomas-clarkson",
+        "tom-otoole"
+      ]
+    },
+    {
+      "number": 4,
+      "name": "Lock",
+      "unit": "Second row",
+      "depth": [
+        "joe-mccarthy",
+        "james-ryan",
+        "iain-henderson",
+        "cormac-izuchukwu"
+      ]
+    },
+    {
+      "number": 5,
+      "name": "Lock",
+      "unit": "Second row",
+      "depth": [
+        "tadhg-beirne",
+        "ryan-baird",
+        "tom-ahern"
+      ]
+    },
+    {
+      "number": 6,
+      "name": "Blindside Flanker",
+      "unit": "Back row",
+      "depth": [
+        "ryan-baird",
+        "cian-prendergast",
+        "tadhg-beirne"
+      ]
+    },
+    {
+      "number": 7,
+      "name": "Openside Flanker",
+      "unit": "Back row",
+      "depth": [
+        "josh-van-der-flier",
+        "nick-timoney"
+      ]
+    },
+    {
+      "number": 8,
+      "name": "Number 8",
+      "unit": "Back row",
+      "depth": [
+        "caelan-doris",
+        "jack-conan",
+        "sean-jansen",
+        "gavin-coombes"
+      ]
+    },
+    {
+      "number": 9,
+      "name": "Scrum-half",
+      "unit": "Half-backs",
+      "depth": [
+        "jamison-gibson-park",
+        "craig-casey"
+      ]
+    },
+    {
+      "number": 10,
+      "name": "Fly-half",
+      "unit": "Half-backs",
+      "depth": [
+        "sam-prendergast",
+        "jack-crowley",
+        "ciaran-frawley",
+        "harry-byrne"
+      ]
+    },
+    {
+      "number": 11,
+      "name": "Left Wing",
+      "unit": "Back three",
+      "depth": [
+        "james-lowe",
+        "jacob-stockdale",
+        "jimmy-obrien"
+      ]
+    },
+    {
+      "number": 12,
+      "name": "Inside Centre",
+      "unit": "Centres",
+      "depth": [
+        "bundee-aki",
+        "stuart-mccloskey",
+        "robbie-henshaw"
+      ]
+    },
+    {
+      "number": 13,
+      "name": "Outside Centre",
+      "unit": "Centres",
+      "depth": [
+        "garry-ringrose",
+        "robbie-henshaw",
+        "jamie-osborne"
+      ]
+    },
+    {
+      "number": 14,
+      "name": "Right Wing",
+      "unit": "Back three",
+      "depth": [
+        "mack-hansen",
+        "calvin-nash",
+        "tommy-obrien",
+        "ethan-mcilroy"
+      ]
+    },
+    {
+      "number": 15,
+      "name": "Fullback",
+      "unit": "Back three",
+      "depth": [
+        "hugo-keenan",
+        "jamie-osborne",
+        "jimmy-obrien"
+      ]
+    }
+  ]
+}

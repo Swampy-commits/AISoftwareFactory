@@ -2,7 +2,7 @@
 
 | Field   | Value       |
 |---------|-------------|
-| Status  | Draft — feature description |
+| Status  | Acceptance criteria agreed |
 | Created | 2026-11-22  |
 
 ---
@@ -69,24 +69,53 @@ first-choice XV and the cover at each position.
 | 1 | Data source | Maintained by hand in a data file in the repo |
 | 2 | Who decides the ranking | Public opinion (fan/pundit consensus), entered by hand |
 | 3 | Injured / unavailable players | Shown at their rank, greyed out with a status |
+| 4 | Data file format | JSON, at `data/depth-chart.json` |
+| 5 | Players in more than one position | Allowed — players are defined once and referenced by id from each position's depth list |
 
 ## 3. Open Questions
 Still to be settled:
 
 1. **Update frequency:** Updated per squad announcement, per match, or ad hoc?
 2. **Extra player details:** Photos, age, positions they can cover, recent form?
-3. **Players in more than one position:** Can a player appear at several
-   positions (e.g. a utility back at 12 and 15)?
-4. **Tech stack / hosting:** Static page, or part of a larger app?
-5. **Data file format:** JSON or YAML?
+3. **Tech stack / hosting:** Static page, or part of a larger app?
 
 ---
 
-## 4. Requirements
+## 4. Data File
+
+`data/depth-chart.json` has this shape:
+
+```json
+{
+  "team": "Ireland men's senior rugby union team",
+  "lastUpdated": "YYYY-MM-DD",
+  "rankingBasis": "Short note on how the order is decided",
+  "players": {
+    "<player-id>": {
+      "name": "Full name",
+      "club": "Province / club",
+      "caps": 0,
+      "status": "Injured"
+    }
+  },
+  "positions": [
+    { "number": 1, "name": "Loosehead Prop", "unit": "Front row",
+      "depth": ["<player-id>", "<player-id>"] }
+  ]
+}
+```
+
+- `status` is optional. If it is present, the player is unavailable and is
+  shown greyed out with that text (AC6). If it is absent, the player is available.
+- `depth` is ordered from first choice down (AC3).
+- A player id can appear in more than one position's `depth`.
+- `positions` holds exactly 15 entries, numbered 1–15.
+
+## 5. Requirements
 _TBD — to be written once the remaining open questions are answered._
 
-## 5. Acceptance Criteria
-_Status: proposed — awaiting agreement._
+## 6. Acceptance Criteria
+_Status: agreed 2026-11-22._
 
 ### AC1 — All positions shown
 - **Given** the data file lists players for every position,
