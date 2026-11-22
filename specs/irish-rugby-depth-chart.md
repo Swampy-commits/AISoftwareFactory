@@ -86,4 +86,68 @@ Still to be settled:
 _TBD — to be written once the remaining open questions are answered._
 
 ## 5. Acceptance Criteria
-_TBD._
+_Status: proposed — awaiting agreement._
+
+### AC1 — All positions shown
+- **Given** the data file lists players for every position,
+- **when** a user opens the page,
+- **then** all 15 positions (1–15) are shown, each labelled with its number and
+  name (e.g. "1 · Loosehead Prop").
+
+### AC2 — Pitch-style layout
+- **Given** the page has loaded,
+- **then** positions are grouped and ordered the way the team lines up:
+  front row (1–3), second row (4–5), back row (6–8), half-backs (9–10),
+  centres (12–13) and back three (11, 14, 15).
+
+### AC3 — Depth order
+- **Given** a position has several players in the data file,
+- **then** they are listed in the order given in the file, ranked 1st, 2nd,
+  3rd and so on, with the rank visible next to each name.
+
+### AC4 — First choice stands out
+- **then** the first-choice player at each position is visually distinct from
+  the backups (e.g. larger or bold), so the first-choice XV can be read at a
+  glance.
+
+### AC5 — Player details
+- **then** each player entry shows their name, province/club and number of caps.
+
+### AC6 — Unavailable players greyed out
+- **Given** a player is marked as unavailable in the data file with a status
+  (e.g. "Injured", "Suspended"),
+- **then** they remain at their rank but are greyed out and their status is
+  shown next to their name.
+- **And** the greying is not the only cue: the status text is visible, so it
+  is clear without relying on colour.
+
+### AC7 — Data file drives the page
+- **Given** someone edits the data file by hand (changes the order, adds or
+  removes a player, or changes a status),
+- **when** the page is next built/loaded,
+- **then** the page reflects the change, with no code changes needed.
+
+### AC8 — Invalid data is caught
+- **Given** the data file has an error (e.g. a position missing, a player with
+  no name, a malformed file),
+- **then** the build/validation step fails with a message saying what is wrong
+  and where, rather than showing a broken page.
+
+### AC9 — Last updated
+- **then** the page shows when the depth chart was last updated, taken from a
+  date in the data file.
+
+### AC10 — Desktop and mobile
+- **Given** the page is viewed on a phone (~375px wide) or a desktop
+  (≥1280px wide),
+- **then** all positions and players are readable, nothing overlaps, and there
+  is no sideways scrolling. On mobile, units may stack vertically.
+
+### AC11 — Accessibility basics
+- **then** the page uses proper headings for units/positions, text meets
+  WCAG AA colour contrast (including greyed-out entries' status text), and the
+  page is usable with a screen reader.
+
+### AC12 — Out of scope stays out
+- **then** the page shows only the Ireland men's senior team, and has no
+  voting, accounts, editing or live match data.
